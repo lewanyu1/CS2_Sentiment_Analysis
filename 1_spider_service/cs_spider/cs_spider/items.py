@@ -9,4 +9,14 @@ import scrapy
 class CsSpiderItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
+
+    #标题
+    title= scrapy.Field()
+    #内容
+    content= scrapy.Field()
+    #链接
+    link= scrapy.Field()
+    #回复数
+    reply_num= scrapy.Field()
+
     pass
