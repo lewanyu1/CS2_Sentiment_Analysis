@@ -8,7 +8,7 @@ class TiebaSpider(scrapy.Spider):
     name = "tieba"
     allowed_domains = ["baidu.com"]
     # 1. 设置起始页为 pn=200（第 5 页）
-    start_urls = ["https://tieba.baidu.com/f?kw=csgo&ie=utf-8&pn=600"]
+    start_urls = ["https://tieba.baidu.com/f?ie=utf-8&kw=csgo&pn=200"]
 
     # 2. 如果您希望日志显示的进度包含之前的 2149 条，可以将初始值设为 2149
     # 如果设为 0，则只计算本次运行抓到的数量
