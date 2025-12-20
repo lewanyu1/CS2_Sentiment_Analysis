@@ -4,7 +4,11 @@ import os
 import platform
 #路径配置
 # BASE_DIR = r'/home/rulerwxe/Code/pycharm/CS2_Sentiment_Analysis' #wsl
-BASE_DIR = r'/Users/rulerwxe/programming/temporory/NLP/CS2_Sentiment_Analysis'#mac
+# BASE_DIR = r'/Users/rulerwxe/programming/temporory/NLP/CS2_Sentiment_Analysis'#mac
+if platform.system() == 'Linux':
+    BASE_DIR = r'/home/rulerwxe/Code/pycharm/CS2_Sentiment_Analysis' #wsl
+elif platform.system() == 'Darwin':
+    BASE_DIR = r'/Users/rulerwxe/programming/temporory/NLP/CS2_Sentiment_Analysis'#mac
 
 DATA_DIR = os.path.join(BASE_DIR, '2_data_warehouse/processed_data')
 DICT_DIR = os.path.join(BASE_DIR, '3_nlp_processor')
