@@ -15,18 +15,24 @@ CS2_Sentiment_Analysis/  (项目总目录)
 │       ├── middlewares.py   (反爬中间件：加代理、换User-Agent)
 │       └── settings.py      (配置文件)
 │
-├── 2_data_warehouse/        <-- 【仓库部】数据存储
+├── 2_data_warehouse/        <-- 数据存储
 │   ├── raw_data/            (存放爬下来的原始 dirty data，如 json/csv)
 │   └── processed_data/      (存放清洗后的干净数据)
 │
-├── 3_nlp_processor/         <-- 【洗菜切菜部】数据清洗与预处理 (Pandas/Jieba)
+├── 3_nlp_processor/         <-- 数据清洗与预处理 (Pandas/Jieba)
 │   ├── cleaner.py           (去广告、去重、去表情)
-│   └── tokenizer.py         (分词、去停用词)
+│   ├── tokenizer.py         (分词、去停用词)
+│   ├── pos_tagger.py        (词性标注
+│   ├── ner.py               (命名实体识别)
+│   └── vectorizer.py        (文本向量化（TF-IDF/Word2Vec）)
+│ 
 │
-├── 4_analysis_service/      <-- 【大厨部】模型分析与可视化
+├── 4_analysis_service/      <-- 模型分析与可视化
 │   ├── emotion_model.py     (情感分析模型)
 │   ├── wordcloud_gen.py     (生成词云)
-│   └── charts.py            (画matplotlib/echarts图)
+│   ├── charts.py            (画matplotlib/echarts图)
+│   ├── keyword_extractor.py (关键词提取（TF-IDF/TextRank))
+│   └── clustering.py        (文本聚类（K-means/DBSCAN))
 │
 ├── requirements.txt         (依赖包列表)
 └── README.md                (说明书)

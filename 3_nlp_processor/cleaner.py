@@ -2,7 +2,8 @@
 import pandas as pd
 import csv
 #读取数据
-tieba_comment_path=r"/home/rulerwxe/Code/pycharm/CS2_Sentiment_Analysis/2_data_warehouse/raw_data/tieba_result.csv"
+# tieba_comment_path=r"/home/rulerwxe/Code/pycharm/CS2_Sentiment_Analysis/2_data_warehouse/raw_data/tieba_result.csv" #wsl
+tieba_comment_path=r"/Users/rulerwxe/programming/temporory/NLP/CS2_Sentiment_Analysis/2_data_warehouse/raw_data/tieba_result.csv" #mac
 comment=pd.read_csv(tieba_comment_path)
 # print(comment.head(5))#看一下数据
 #清洗数据
@@ -30,8 +31,12 @@ print(f"清洗完毕！剩余数据量：",clean_comment.shape)
 
 #分别保存title和comment
 
-clean_comment['title'].drop_duplicates().to_csv("/home/rulerwxe/Code/pycharm/CS2_Sentiment_Analysis/2_data_warehouse/processed_data/title.csv",index=False,encoding='utf-8')
-clean_comment['comment'].to_csv("/home/rulerwxe/Code/pycharm/CS2_Sentiment_Analysis/2_data_warehouse/processed_data/comment.csv",index=False,encoding='utf-8')
+#wsl
+# clean_comment['title'].drop_duplicates().to_csv("/home/rulerwxe/Code/pycharm/CS2_Sentiment_Analysis/2_data_warehouse/processed_data/title.csv",index=False,encoding='utf-8')
+# clean_comment['comment'].to_csv("/home/rulerwxe/Code/pycharm/CS2_Sentiment_Analysis/2_data_warehouse/processed_data/comment.csv",index=False,encoding='utf-8')
+#mac
+clean_comment['title'].drop_duplicates().to_csv("/Users/rulerwxe/programming/temporory/NLP/CS2_Sentiment_Analysis/2_data_warehouse/processed_data/title.csv",index=False,encoding='utf-8')
+clean_comment['comment'].to_csv("/Users/rulerwxe/programming/temporory/NLP/CS2_Sentiment_Analysis/2_data_warehouse/processed_data/comment.csv",index=False,encoding='utf-8')
 
 
 # print(content.head(5))#看一下数据
