@@ -1,35 +1,41 @@
 '''
 命名实体识别
-修正版
 '''
 #导包
 import jieba
-import platform
 import os
 import json
 import pandas as pd
-from typing import Dict, List
+import sys
 
-# ============================
-# 1. 路径配置
-# ============================
-if platform.system() == 'Linux':
-    BASE_DIR = r'/home/rulerwxe/Code/pycharm/CS2_Sentiment_Analysis'
-elif platform.system() == 'Darwin':
-    BASE_DIR = r'/Users/rulerwxe/programming/temporory/NLP/CS2_Sentiment_Analysis'
-else:
-    # 建议加上 Windows 兜底，防止报错
-    BASE_DIR = r'D:\Code\CS2_Sentiment_Analysis'
+current_dir = os.path.dirname(os.path.abspath(__file__)) # 当前脚本所在目录 (3_nlp_processor)
+root_dir = os.path.dirname(current_dir)                # 根目录 (CS2_Sentiment_Analysis)
+sys.path.append(root_dir)
+from utils import config
+input_file = config.FILE_COMMENT         # 原始评论数据
+output_file = config.FILE_NER_RESULT     # 结果输出位置
+CS2_NER_DICT_PATH = config.DICT_NER      # 字典位置
 
-DATA_DIR = os.path.join(BASE_DIR, '2_data_warehouse/processed_data')
-DICT_DIR = os.path.join(BASE_DIR, '3_nlp_processor')
-
-# 建议：字典最好放在 dicts 子目录下
-input_file = os.path.join(DATA_DIR, 'comment.csv')
-output_file = os.path.join(DATA_DIR, 'comment_ner_result.csv')
-
-# 注意检查您的文件名大小写，您写的是 Cs2...V1.json
-CS2_NER_DICT_PATH = os.path.join(DICT_DIR, 'Cs2_ner_dict_V1.json')
+# # ============================
+# # 1. 路径配置
+# # ============================
+# if platform.system() == 'Linux':
+#     BASE_DIR = r'/home/rulerwxe/Code/pycharm/CS2_Sentiment_Analysis'
+# elif platform.system() == 'Darwin':
+#     BASE_DIR = r'/Users/rulerwxe/programming/temporory/NLP/CS2_Sentiment_Analysis'
+# else:
+#     # 建议加上 Windows 兜底，防止报错
+#     BASE_DIR = r'D:\Code\CS2_Sentiment_Analysis'
+#
+# DATA_DIR = os.path.join(BASE_DIR, '2_data_warehouse/processed_data')
+# DICT_DIR = os.path.join(BASE_DIR, '3_nlp_processor')
+#
+# # 建议：字典最好放在 dicts 子目录下
+# input_file = os.path.join(DATA_DIR, 'comment.csv')
+# output_file = os.path.join(DATA_DIR, 'comment_ner_result.csv')
+#
+# # 注意检查您的文件名大小写，您写的是 Cs2...V1.json
+# CS2_NER_DICT_PATH = os.path.join(DICT_DIR, 'Cs2_ner_dict_V1.json')
 
 # ============================
 # 2. 功能函数

@@ -3,24 +3,34 @@ import jieba
 import pandas as pd
 import jieba.posseg as pseg
 import os
-import platform
+import sys
+current_dir = os.path.dirname(os.path.abspath(__file__))
+root_dir = os.path.dirname(current_dir)
+sys.path.append(root_dir)
 
-#路径配置
-if platform.system() == 'Linux':
-    BASE_DIR = r'/home/rulerwxe/Code/pycharm/CS2_Sentiment_Analysis' #wsl
-elif platform.system() == 'Darwin':
-    BASE_DIR = r'/Users/rulerwxe/programming/temporory/NLP/CS2_Sentiment_Analysis'#mac
+from utils import config
+input_file = config.FILE_COMMENT
+output_file = config.FILE_POS_FILTERED # 注意：这里用 filtered 这个变量
 
-DATA_DIR = os.path.join(BASE_DIR, '2_data_warehouse/processed_data')
-DICT_DIR = os.path.join(BASE_DIR, '3_nlp_processor')
+user_dict_path = config.DICT_JIEBA
+stopwords_path = config.DICT_STOPWORDS
 
-# 输入输出文件
-input_file = os.path.join(DATA_DIR, 'comment.csv')
-output_file = os.path.join(DATA_DIR, 'comment_pos_flittered.csv')
-
-# 词典文件路径
-user_dict_path = os.path.join(DICT_DIR, 'Cs2_dict.txt')
-stopwords_path = os.path.join(DICT_DIR, 'stopwords_hit.txt')
+# #路径配置
+# if platform.system() == 'Linux':
+#     BASE_DIR = r'/home/rulerwxe/Code/pycharm/CS2_Sentiment_Analysis' #wsl
+# elif platform.system() == 'Darwin':
+#     BASE_DIR = r'/Users/rulerwxe/programming/temporory/NLP/CS2_Sentiment_Analysis'#mac
+#
+# DATA_DIR = os.path.join(BASE_DIR, '2_data_warehouse/processed_data')
+# DICT_DIR = os.path.join(BASE_DIR, '3_nlp_processor')
+#
+# # 输入输出文件
+# input_file = os.path.join(DATA_DIR, 'comment.csv')
+# output_file = os.path.join(DATA_DIR, 'comment_pos_flittered.csv')
+#
+# # 词典文件路径
+# user_dict_path = os.path.join(DICT_DIR, 'Cs2_dict.txt')
+# stopwords_path = os.path.join(DICT_DIR, 'stopwords_hit.txt')
 
 #通过标签
 ALLOWED_POS_TAGS={'n','v','a','d','eng','i'}
