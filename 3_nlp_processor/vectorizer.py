@@ -9,7 +9,7 @@ root_dir = os.path.dirname(current_dir)
 sys.path.append(root_dir)
 
 from utils import config
-input_file = config.FILE_POS_FLITTERED       # 输入：词性清洗后的 CSV
+input_file = config.FILE_COMMENT_SEGMENTED      # 输入：词性清洗后的 CSV
 matrix_output = config.FILE_TFIDF_MATRIX    # 输出：矩阵文件 (.pkl)
 model_output = config.MODEL_TFIDF_VECTORIZER # 输出：模型文件 (.pkl)
 
@@ -21,15 +21,8 @@ def run_vectorizer():
         return
 
     df = pd.read_csv(input_file)
-    target_col = None
-    for col in ['pos_filtered', 'comment_tag', 'comment_processed', 'comment']:
-        if col in df.columns:
-            target_col = col
-            break
+    target_col ='tokenized_comment'
 
-    if not target_col:
-        print(f"❌ CSV 中找不到目标数据列，现有列: {df.columns}")
-        return
     #处理空值
     corpus=df[target_col].fillna("").astype(str).tolist()
 

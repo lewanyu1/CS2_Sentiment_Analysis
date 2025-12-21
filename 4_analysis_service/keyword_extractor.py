@@ -33,6 +33,8 @@ def extract_keywords(corpus):
     df_sorted = df.sort_values(by='weight', ascending=False)
     print("\n🏆 CS2 贴吧 Top 关键词预览:")
     print(df_sorted.head(10))  # 打印前10个看看
+    df_sorted.to_csv(OUTPUT_CSV, index=False, encoding='utf-8-sig')
+    print(f"完整结果已保存至: {OUTPUT_CSV}")
 
 if __name__ == '__main__':
     extract_keywords(50)

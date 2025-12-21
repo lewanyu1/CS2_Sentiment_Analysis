@@ -26,7 +26,7 @@ root_dir = os.path.dirname(current_dir)
 sys.path.append(root_dir)
 
 from utils import config
-input_file = config.FILE_RAW_COMMENT     # 输入：原始爬虫数据
+input_file = config.FILE_RAW_COMMENT   # 输入：分词后的标准数据®
 output_file = config.FILE_COMMENT_SEGMENTED       # 输出：分词后的标准数据
 user_dict_path = config.DICT_JIEBA       # 字典路径
 stopwords_path = config.DICT_STOPWORDS   # 停用词路径
@@ -68,16 +68,21 @@ def process_single_text(text, stop_word):
     result_list = []
     if not isinstance(text, str):
         return ""
-    words = jieba.lcut(text,cut_all=False)
+
+    words = jieba.lcut(text, cut_all=False)
+
     for word in words:
-        word = word.strip()#去除两边空白
-        if word in stop_word:
+        word = word.strip()  # 去除两边空白
+
+        # 🟢 这里的逻辑是：
+        # 1. 如果是停用词 -> 扔掉
+        # 2. 或者 是纯数字 -> 扔掉
+        # 3. 或者 长度小于2 (单字) -> 扔掉
+        if word in stop_word or word.isnumeric() or len(word) < 2:
             continue
-        else:
-            if word.isnumeric():
-                continue
-            else:
-                result_list.append(word)
+
+        result_list.append(word)
+
     return " ".join(result_list)
 
 

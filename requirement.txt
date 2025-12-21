@@ -1,0 +1,20 @@
+# === 1. 数据采集 (Data Collection) ===
+Scrapy
+
+# === 2. 数据处理与计算 (Data Processing) ===
+pandas
+numpy
+
+# === 3. NLP 核心库 (NLP Core) ===
+jieba
+snownlp
+scikit-learn
+
+# === 4. 工具库 (Utilities) ===
+joblib
+tqdm
+
+# === 5. 可视化 (Visualization - 为第5章准备) ===
+matplotlib
+seaborn
+wordcloud
