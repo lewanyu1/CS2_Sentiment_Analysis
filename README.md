@@ -3,38 +3,45 @@
 
 ## 📂 项目结构图
 
+
 ```text
-CS2_Sentiment_Analysis/  (项目总目录)
+CS2_Sentiment_Analysis/
+├── main.py                          # [入口] 主程序
+├── requirements.txt                 # [依赖]
 │
-├── 1_spider_service/        <-- 【收菜部】Scrapy爬虫模块
-│   └── cs_spider/           (标准的Scrapy项目结构)
-│       ├── spiders/
-│       │   └── tieba.py     (具体的爬虫逻辑)
-│       ├── items.py         (定义数据模型)
-│       ├── pipelines.py     (存数据：存入数据库/Raw Data)
-│       ├── middlewares.py   (反爬中间件：加代理、换User-Agent)
-│       └── settings.py      (配置文件)
+├── 1_data_collection/               # [改名] 原 spider_service，对应论文第2章
+│   └── spiders/                     # Scrapy 爬虫
+│       └── cs_spider/               # 具体爬虫代码
 │
-├── 2_data_warehouse/        <-- 数据存储
-│   ├── raw_data/            (存放爬下来的原始 dirty data，如 json/csv)
-│   └── processed_data/      (存放清洗后的干净数据)
+├── 2_data_warehouse/                # [数据] 对应论文 2.1 & 2.2
+│   ├── raw_data/                    # 原始数据
+│   └── processed_data/              # 中间数据(清洗后/向量化后)
 │
-├── 3_nlp_processor/         <-- 数据清洗与预处理 (Pandas/Jieba)
-│   ├── cleaner.py           (去广告、去重、去表情)
-│   ├── tokenizer.py         (分词、去停用词)
-│   ├── pos_tagger.py        (词性标注
-│   ├── ner.py               (命名实体识别)
-│   └── vectorizer.py        (文本向量化（TF-IDF/Word2Vec）)
-│ 
+├── 3_nlp_processor/                 # [预处理] 对应论文第3章
+│   ├── dicts/                       # 字典文件夹
+│   │   ├── Cs2_dict.txt             # 分词词典
+│   │   ├── stopwords_hit.txt        # 停用词表
+│   │   └── ner_dict.json            # 实体识别字典
+│   │
+│   ├── cleaner.py                   # 1. 文本预处理 (对应要求: 文本预处理)
+│   ├── tokenizer.py                 # 2. 分词 (对应要求: 分词)
+│   ├── pos_tagger.py                # 3. 词性标注 (对应要求: 词性标注)
+│   ├── ner.py                       # 4. 命名实体识别 (对应要求: NER)
+│   └── vectorizer.py                # 5. 文本向量化 (对应要求: 文本向量化)
 │
-├── 4_analysis_service/      <-- 模型分析与可视化
-│   ├── emotion_model.py     (情感分析模型)
-│   ├── wordcloud_gen.py     (生成词云)
-│   ├── charts.py            (画matplotlib/echarts图)
-│   ├── keyword_extractor.py (关键词提取（TF-IDF/TextRank))
-│   └── clustering.py        (文本聚类（K-means/DBSCAN))
+├── 4_analysis_service/              # [分析] 对应论文 4.1 - 4.4
+│   ├── models/                      # 存放训练好的 pkl 模型
+│   │
+│   ├── keyword_extractor.py         # 6. 关键词提取 (对应要求: 关键词提取)
+│   ├── sentiment_classifier.py      # 7. 文本分类 (原emotion_model，对应要求: 文本分类)
+│   └── clustering.py                # 8. 文本聚类 (对应要求: 文本聚类)
 │
-├── requirements.txt         (依赖包列表)
-└── README.md                (说明书)
+├── 5_visualization/                 # [展示]  对应论文 4.5
+│   ├── wordcloud_plot.py            # 词云图绘制
+│   └── charts_plot.py               # 原 charts.py，绘制柱状图/饼图/折线图
+│
+└── utils/                           # [工具]
+    └── config.py                    # 全局配置
+
 ```
 
