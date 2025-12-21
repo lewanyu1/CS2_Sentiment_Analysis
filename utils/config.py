@@ -31,7 +31,7 @@ if not os.path.exists(MODEL_DIR):
 # 3. 具体数据文件 (完全还原你的文件名)
 # ============================
 # [Tokenizer] 输入：原始数据
-FILE_RAW_COMMENT = os.path.join(RAW_DATA_DIR, 'tieba_raw.csv')
+FILE_RAW_COMMENT = os.path.join(PROCESSED_DATA_DIR, 'comment.csv')
 
 # [Tokenizer] 输出：分词结果 (截图里你有这个文件)
 FILE_COMMENT_SEGMENTED = os.path.join(PROCESSED_DATA_DIR, 'comment_segmented.csv')

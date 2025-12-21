@@ -27,7 +27,7 @@ sys.path.append(root_dir)
 
 from utils import config
 input_file = config.FILE_RAW_COMMENT     # 输入：原始爬虫数据
-output_file = config.FILE_COMMENT        # 输出：分词后的标准数据
+output_file = config.FILE_COMMENT_SEGMENTED       # 输出：分词后的标准数据
 user_dict_path = config.DICT_JIEBA       # 字典路径
 stopwords_path = config.DICT_STOPWORDS   # 停用词路径
 

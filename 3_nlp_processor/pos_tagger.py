@@ -10,7 +10,7 @@ sys.path.append(root_dir)
 
 from utils import config
 input_file = config.FILE_COMMENT
-output_file = config.FILE_POS_FILTERED # 注意：这里用 filtered 这个变量
+output_file = config.FILE_POS_FLITTERED  # 注意：这里用 filtered 这个变量
 
 user_dict_path = config.DICT_JIEBA
 stopwords_path = config.DICT_STOPWORDS
